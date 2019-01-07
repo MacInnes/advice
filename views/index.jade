@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1 Advice
   h4 Please enter a subject for advice:
   form(
     method="post",
@@ -14,3 +14,7 @@ block content
     input(
       type="submit"
     )
+
+  if advice
+    h4 Advice:
+    p= advice.advice
