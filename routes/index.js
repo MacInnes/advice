@@ -20,8 +20,7 @@ router.post('/search', async function(req, res, next) {
     })
   })
   var advice = await adviceResponse;
-  console.log(advice);
-  res.render('index', { advice: advice })
+  res.render('index', { advice: advice.advice })
 })
 
 module.exports = router;
