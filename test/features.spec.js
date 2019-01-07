@@ -13,7 +13,9 @@ describe('root route', () => {
       .get("/")
       .end((err, response) => {
         response.should.have.status(200);
-        response.text.should.include("Welcome to Express")
+        response.should.be.html;
+        response.text.should.include("Please enter a subject for advice:");
+        
         done();
       });
   });
