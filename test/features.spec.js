@@ -15,8 +15,22 @@ describe('root route', () => {
         response.should.have.status(200);
         response.should.be.html;
         response.text.should.include("Please enter a subject for advice:");
-        
+
         done();
       });
   });
+})
+
+describe('post to search', () => {
+  it('can search by subject', done => {
+    chai.request(server)
+      .post("/search")
+      .send({ subject: "life" })
+      .end((err, response) => {
+        response.should.have.status(200);
+        response.should.be.html;
+        
+        done();
+      })
+  })
 })
