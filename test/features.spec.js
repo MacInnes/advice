@@ -33,6 +33,18 @@ describe('post to search', () => {
         done();
       })
   })
+
+  it('fails an invalid search term', done => {
+    chai.request(server)
+      .post("/search")
+      .send({ subject: "asdf" })
+      .end((err, response) => {
+        response.should.have.status(200);
+        response.text.should.include("No advice found for that subject, please try again!")
+
+        done();
+      })
+  })
 })
 
 describe('get req to magic8ball', () => {
