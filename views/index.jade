@@ -1,28 +1,30 @@
 extends layout
 
 block content
-  h1 Advice
-  h4 Please enter a subject for advice:
-  form(
-    method="post",
-    action="/search"
-  )
-    input(
-      type="text"
-      name="subject"
+  h1(id="title") Advice
+  h3 Please enter a subject for advice:
+  div(id="advice-form")
+    form(
+      method="post",
+      action="/search"
     )
-    input(
-      type="submit"
-    )
+      input(
+        type="text"
+        name="subject"
+      )
+      input(
+        type="submit"
+      )
+  
+    if advice
+      div(id="advice-response")
+        h3 #{advice}
 
-  if advice
-    h4 Advice:
-    p= advice
-
-  h4 Or keep the subject to yourself and let the Magic 8 Ball decide!
-  a(href='/magic8ball')
-    img(src="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
-
-  if magicResponse
-    h4 Magic 8 Ball response:
-    p= magicResponse
+  div(id="magic8ball")
+    h3 Or keep the subject to yourself and let the Magic 8 Ball decide!
+    a(href='/magic8ball')
+      img(src="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
+    if magicResponse
+      h3 Magic 8 Ball response:
+      div
+        h3= magicResponse
