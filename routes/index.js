@@ -8,15 +8,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/search', async function(req, res, next) {
-  console.log(req.body.subject);
   var adviceResponse = new Promise((resolve, reject) => {
     var options = {
       url: `https://api.adviceslip.com/advice/search/${req.body.subject}`
     }
     request(options, function(err, response, body){
       var responseJSON = JSON.parse(response.body);
-      var rand = responseJSON.slips[Math.floor(Math.random() * responseJSON.slips.length)];
-      resolve(rand);
+      if (responseJSON.slips){
+        var rand = responseJSON.slips[Math.floor(Math.random() * responseJSON.slips.length)];
+        resolve(rand);
+      } else {
+        res.render('index', { advice: "No advice found for that subject, please try again!" })
+      }
     })
   })
   var advice = await adviceResponse;

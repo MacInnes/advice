@@ -29,7 +29,21 @@ describe('post to search', () => {
       .end((err, response) => {
         response.should.have.status(200);
         response.should.be.html;
-        
+
+        done();
+      })
+  })
+})
+
+describe('get req to magic8ball', () => {
+  it('can get a random 8ball response', done => {
+    chai.request(server)
+      .get("/magic8ball")
+      .end((err, response) => {
+        response.should.have.status(200);
+        response.should.be.html;
+        console.log("BODY: ", response.body);
+        console.log("TEXT: ", response.text);
         done();
       })
   })
