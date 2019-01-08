@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  h1(id="title") Advice
+  a(href='/')
+    h1(id="title") Advice
   h3 Please enter a subject for advice:
   div(id="advice-form")
     form(
@@ -18,13 +19,12 @@ block content
   
     if advice
       div(id="advice-response")
-        h3 #{advice}
+        h2 #{advice}
 
   div(id="magic8ball")
     h3 Or keep the subject to yourself and let the Magic 8 Ball decide!
     a(href='/magic8ball')
       img(src="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
     if magicResponse
-      h3 Magic 8 Ball response:
       div
-        h3= magicResponse
+        h2= magicResponse
